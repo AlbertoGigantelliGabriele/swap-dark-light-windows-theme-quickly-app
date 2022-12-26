@@ -31,9 +31,3 @@
 # Creating the executable:
 
 The executable was made through the app [Bat_To_Exe_Converter_x64](https://bat-to-exe-converter-x64.en.softonic.com/).
-
-During the creation the part of the code useful to request the administrator permissions have been removed because it was set through the app.
-
-The icon has been taken from [Icons8 Pichon](https://icons8.com/).
-
-When you download it (or create the exe) disable the antivirus.
