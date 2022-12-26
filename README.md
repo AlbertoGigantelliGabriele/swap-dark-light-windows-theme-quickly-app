@@ -25,8 +25,36 @@
     )
     exit
 
-### It goes to settings to change the theme and after 1 second it closes.
+### It goes to the settings to change the theme and after 1 second it closes.
 
+### An alternative would be to try closing the settings with a for loop
+
+	cd /d "C:\Windows\Resources\Themes"
+
+	if exist "theme_flag.txt" (
+	  start "" "C:\Windows\Resources\Themes\dark.theme"
+
+	  :: Try to close the "systemsettings.exe" process 4 times, with a delay of 1 second between each attempt
+	  for /l %%i in (1,1,4) do (
+	    timeout /t 1 > nul
+	    tasklist /fi "imagename eq systemsettings.exe" > nul
+	    for /f "tokens=2" %%j in ('tasklist /fi "imagename eq systemsettings.exe" ^| find /i "systemsettings.exe"') do (
+	      taskkill /pid %%j /f > nul
+	    )
+	  )
+	  del /f theme_flag.txt
+	) else (
+	  start "" "C:\Windows\Resources\Themes\aero.theme"
+
+	  for /l %%i in (1,1,4) do (
+	    timeout /t 1 > nul
+	    tasklist /fi "imagename eq systemsettings.exe" > nul
+	    for /f "tokens=2" %%j in ('tasklist /fi "imagename eq systemsettings.exe" ^| find /i "systemsettings.exe"') do (
+	      taskkill /pid %%j /f > nul
+	    )
+	  )
+	  type nul > theme_flag.txt
+	)
 
 # Creating the executable:
 
