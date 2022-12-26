@@ -25,9 +25,9 @@
     )
     exit
 
-### It goes to settings to change the theme and after 1 second it closes.
+### It goes to the settings to change the theme and after 1 second it closes.
 
-### An alternative could be trying to close settings with for loop
+### An alternative would be to try closing the settings with a for loop
 
 	cd /d "C:\Windows\Resources\Themes"
 
@@ -46,7 +46,6 @@
 	) else (
 	  start "" "C:\Windows\Resources\Themes\aero.theme"
 
-	  :: Try to close the "systemsettings.exe" process 4 times, with a delay of 1 second between each attempt
 	  for /l %%i in (1,1,4) do (
 	    timeout /t 1 > nul
 	    tasklist /fi "imagename eq systemsettings.exe" > nul
